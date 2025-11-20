@@ -31,4 +31,16 @@ public class Maestro {
 		return criaturas;
 	}
 	
+	
+	public void entrenar(String nombreCriatura) throws FaltaDeMaestriaException {
+		
+	}
+	
+	public void pacificar(String nombreCriatura) {
+		
+	}
+	
+	public void transformar(String nombreCriatura) {
+		
+	}
 }
