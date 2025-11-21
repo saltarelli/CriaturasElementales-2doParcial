@@ -1,16 +1,18 @@
 package ar.edu.unlam.pb2.criaturasElementales;
 
-public class VinculoTerrestre extends CriaturaDecorada {
+public class VinculoTerrestre extends Transformacion {
 
-	protected Criatura criatura;
-	
-    public VinculoTerrestre(Criatura criatura) {
-        super(criatura);
-        this.criatura = criatura;
+    public VinculoTerrestre(Criatura envuelta) {
+        super(envuelta);
     }
 
     @Override
     public int getEnergia() {
-        return Math.max(50, criatura.getEnergia());
+        return Math.max(envuelta.getEnergia(), 50);
+    }
+
+    @Override
+    protected Transformacion crear(Criatura criatura) {
+        return new VinculoTerrestre(criatura);
     }
 }

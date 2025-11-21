@@ -1,18 +1,18 @@
 package ar.edu.unlam.pb2.criaturasElementales;
 
-public class BendicionDelRio extends CriaturaDecorada {
+public class BendicionDelRio extends Transformacion {
 
-    private int energiaModificada;
-
-    public BendicionDelRio(Criatura criatura) {
-        super(criatura);
-        int energia = criatura.getEnergia() * 2;
-        if (energia > 180) energia = 180;
-        this.energiaModificada = energia;
+    public BendicionDelRio(Criatura envuelta) {
+        super(envuelta);
     }
 
     @Override
     public int getEnergia() {
-        return energiaModificada;
+        return Math.min(envuelta.getEnergia() * 2, 180);
+    }
+
+    @Override
+    protected Transformacion crear(Criatura criatura) {
+        return new BendicionDelRio(criatura);
     }
 }

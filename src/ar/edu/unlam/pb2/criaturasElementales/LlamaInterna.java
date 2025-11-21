@@ -1,29 +1,29 @@
 package ar.edu.unlam.pb2.criaturasElementales;
 
-public class LlamaInterna extends CriaturaDecorada {
+public class LlamaInterna extends Transformacion {
 
-    private int energiaModificada;
-    private Comportamiento comportamientoModificado;
-
-    public LlamaInterna(Criatura criatura) {
-        super(criatura);
-
-        if (criatura.getAfinidad() == Afinidad.FUEGO) {
-            energiaModificada = criatura.getEnergia() + 30;
-            comportamientoModificado = criatura.getComportamiento();
-        } else {
-            energiaModificada = criatura.getEnergia();
-            comportamientoModificado = Comportamiento.INESTABLE;
-        }
+    public LlamaInterna(Criatura envuelta) {
+        super(envuelta);
     }
 
     @Override
     public int getEnergia() {
-        return energiaModificada;
+        if (envuelta.getAfinidad() == Afinidad.FUEGO) {
+            return envuelta.getEnergia() + 30;
+        }
+        return envuelta.getEnergia();
     }
 
     @Override
     public Comportamiento getComportamiento() {
-        return comportamientoModificado;
+        if (envuelta.getAfinidad() != Afinidad.FUEGO) {
+            return Comportamiento.INESTABLE;
+        }
+        return envuelta.getComportamiento();
+    }
+
+    @Override
+    protected Transformacion crear(Criatura criatura) {
+        return new LlamaInterna(criatura);
     }
 }
