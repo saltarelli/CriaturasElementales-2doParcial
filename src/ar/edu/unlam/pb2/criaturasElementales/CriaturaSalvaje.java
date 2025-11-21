@@ -8,14 +8,26 @@ public class CriaturaSalvaje extends Criatura {
 
 	@Override
 	public void entrenar() {
-		// TODO Auto-generated method stub
+
+		int aumento = (int)(Math.random() * 30) + 10;
 		
+		this.energia += aumento;
+		
+		if(this.energia > 200) {
+			throw new EnergiaDesbordadaException("La criatura salvaje excedió su limite natural");
+		}
 	}
 
 	@Override
 	public void pacificar() {
-		// TODO Auto-generated method stub
+
+		int reduccion = (int)(Math.random() * 20) + 10;
 		
+		this.energia -= reduccion;
+		
+		if(this.energia < 0) {
+			this.energia = 0;
+		}
 	}
 	
 } 

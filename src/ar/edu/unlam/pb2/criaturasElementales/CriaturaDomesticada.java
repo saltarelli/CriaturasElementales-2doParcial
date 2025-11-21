@@ -8,13 +8,16 @@ public class CriaturaDomesticada extends Criatura {
 
 	@Override
 	public void entrenar() {
-		// TODO Auto-generated method stub
-		
+		this.energia += 10;
 	}
 
 	@Override
 	public void pacificar() {
-		// TODO Auto-generated method stub
+		this.energia -= 10;
+		
+		if(this.energia < 0) {
+			this.energia = 0;
+		}
 		
 	}
 	
