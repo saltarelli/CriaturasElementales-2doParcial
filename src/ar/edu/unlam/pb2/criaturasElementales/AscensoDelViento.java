@@ -7,12 +7,22 @@ public class AscensoDelViento extends Transformacion {
     }
 
     @Override
-    public Afinidad getAfinidad() {
-        return Afinidad.AIRE;
+    protected Transformacion crear(Criatura criatura) {
+        return new AscensoDelViento(criatura);
     }
 
     @Override
-    protected Transformacion crear(Criatura criatura) {
-        return new AscensoDelViento(criatura);
+    public Afinidad getAfinidad() {
+        return Afinidad.AIRE; 
+    }
+
+    @Override
+    public int getEnergia() {
+        return envuelta.getEnergia();
+    }
+
+    @Override
+    public String getNombre() {
+        return envuelta.getNombre();
     }
 }

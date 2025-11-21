@@ -4,6 +4,15 @@ public class LlamaInterna extends Transformacion {
 
     public LlamaInterna(Criatura envuelta) {
         super(envuelta);
+
+        if (envuelta.getAfinidad() != Afinidad.FUEGO) {
+            this.comportamiento = Comportamiento.INESTABLE;
+        }
+    }
+
+    @Override
+    protected Transformacion crear(Criatura criatura) {
+        return new LlamaInterna(criatura);
     }
 
     @Override
@@ -15,15 +24,12 @@ public class LlamaInterna extends Transformacion {
     }
 
     @Override
-    public Comportamiento getComportamiento() {
-        if (envuelta.getAfinidad() != Afinidad.FUEGO) {
-            return Comportamiento.INESTABLE;
-        }
-        return envuelta.getComportamiento();
+    public Afinidad getAfinidad() {
+        return envuelta.getAfinidad();
     }
 
     @Override
-    protected Transformacion crear(Criatura criatura) {
-        return new LlamaInterna(criatura);
+    public String getNombre() {
+        return envuelta.getNombre();
     }
 }

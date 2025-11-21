@@ -7,12 +7,23 @@ public class VinculoTerrestre extends Transformacion {
     }
 
     @Override
-    public int getEnergia() {
-        return Math.max(envuelta.getEnergia(), 50);
+    protected Transformacion crear(Criatura criatura) {
+        return new VinculoTerrestre(criatura);
     }
 
     @Override
-    protected Transformacion crear(Criatura criatura) {
-        return new VinculoTerrestre(criatura);
+    public int getEnergia() {
+        int energiaActual = envuelta.getEnergia();
+        return (energiaActual < 50) ? 50 : energiaActual;
+    }
+
+    @Override
+    public Afinidad getAfinidad() {
+        return envuelta.getAfinidad();
+    }
+
+    @Override
+    public String getNombre() {
+        return envuelta.getNombre();
     }
 }
