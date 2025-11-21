@@ -66,19 +66,15 @@ public class Maestro {
 	}
 	
 	public void transformar(String nombreCriatura, Transformacion transformacion) {
-		
-		Criatura criatura = criaturas.get(nombreCriatura);
-		
-		if(criatura == null) {
-			throw new IllegalArgumentException("La criatura no pertenece a la coleccion del maestro");
-		}
-		else if(transformacion == null) {
-			throw new IllegalArgumentException("La transformacion ingresada no es valida");
-		}
-		
-		Criatura criaturaTransformada = transformacion.aplicar(criatura);
-		
-		criaturas.put(nombreCriatura, criaturaTransformada);
-		
+
+	    Criatura criatura = criaturas.get(nombreCriatura);
+
+	    if (criatura == null) {
+	        throw new IllegalArgumentException("La criatura no pertenece a la coleccion del maestro");
+	    }
+
+	    Criatura decorada = transformacion.aplicar(criatura);
+
+	    criaturas.put(nombreCriatura, decorada);
 	}
 }
