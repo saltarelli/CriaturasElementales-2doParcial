@@ -10,10 +10,9 @@ public class CriaturaSalvaje extends Criatura {
 	public void entrenar() {
 
 		int aumento = (int)(Math.random() * 30) + 10;
+		modificarEnergia(aumento);
 		
-		this.energia += aumento;
-		
-		if(this.energia > 200) {
+		if(this.getEnergia() > 200) {
 			throw new EnergiaDesbordadaException("La criatura salvaje excedió su limite natural");
 		}
 	}
@@ -22,12 +21,7 @@ public class CriaturaSalvaje extends Criatura {
 	public void pacificar() {
 
 		int reduccion = (int)(Math.random() * 20) + 10;
-		
-		this.energia -= reduccion;
-		
-		if(this.energia < 0) {
-			this.energia = 0;
-		}
+		modificarEnergia(-reduccion);
 	}
 	
 } 

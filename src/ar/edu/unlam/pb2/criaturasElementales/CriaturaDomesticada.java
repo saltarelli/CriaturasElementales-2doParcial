@@ -8,16 +8,12 @@ public class CriaturaDomesticada extends Criatura {
 
 	@Override
 	public void entrenar() {
-		this.energia += 10;
+		modificarEnergia(10);
 	}
 
 	@Override
 	public void pacificar() {
-		this.energia -= 10;
-		
-		if(this.energia < 0) {
-			this.energia = 0;
-		}
+		modificarEnergia(-10);
 		
 	}
 	

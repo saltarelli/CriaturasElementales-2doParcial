@@ -75,6 +75,20 @@ public class CriaturaTest {
 	}
 	
 	@Test
+	public void queEntrenarAncestralesNoModifiqueLaEnergiaPorDebajoDeCien() {
+		Criatura criaturaAncestral = new CriaturaAncestral("Jose", 25, Afinidad.AGUA);
+		criaturaAncestral.entrenar();
+		assertTrue(criaturaAncestral.getEnergia() >= 100);
+	}
+	
+	@Test
+	public void quePacificarAncestralesNoModifiqueLaEnergiaPorDebajoDeCien() {
+		Criatura criaturaAncestral = new CriaturaAncestral("Jose", 5, Afinidad.AGUA);
+		criaturaAncestral.pacificar();
+		assertTrue(criaturaAncestral.getEnergia() >= 100);
+	}
+	
+	@Test
 	public void queEntrenarUnaCriaturaSalvajeAlDesbordarDeEnergiaTireExcepcion() {
 		Criatura criaturaSalvaje = new CriaturaSalvaje("Carlos", 195, Afinidad.FUEGO);
 		
@@ -86,8 +100,63 @@ public class CriaturaTest {
 		}
 	}
 	
+	@Test
+	public void queCriaturasConAfinidadCompartidasGanenEnergiaAlInteractuar() {
+		Criatura criaturaSalvaje = new CriaturaSalvaje("Carlos", 120, Afinidad.FUEGO);
+		Criatura criaturaDomesticada = new CriaturaDomesticada("Juan", 80, Afinidad.FUEGO);
+
+		criaturaDomesticada.interactuar(criaturaSalvaje);
+		
+		assertEquals(130, criaturaSalvaje.getEnergia());
+		assertEquals(90, criaturaDomesticada.getEnergia());
+
+	}
 	
+	@Test
+	public void queCriaturasConAfinidadesOpuestasSeVuelvanInestables() {
+		Criatura criaturaSalvaje = new CriaturaSalvaje("Carlos", 120, Afinidad.AGUA);
+		Criatura criaturaDomesticada = new CriaturaDomesticada("Juan", 80, Afinidad.FUEGO);
+
+		criaturaDomesticada.interactuar(criaturaSalvaje);
+		
+		assertEquals(Comportamiento.INESTABLE, criaturaSalvaje.getComportamiento());
+		assertEquals(Comportamiento.INESTABLE, criaturaDomesticada.getComportamiento());
+
+	}
 	
+	@Test
+	public void queLaCriaturaAncestralDomineLaInteraccion() {
+		Criatura criaturaAncestral = new CriaturaAncestral("Carlos", 120, Afinidad.TIERRA);
+		Criatura criaturaDomesticada = new CriaturaDomesticada("Juan", 80, Afinidad.AIRE);
+
+		criaturaDomesticada.interactuar(criaturaAncestral);
+		
+		assertEquals(140, criaturaAncestral.getEnergia());
+		assertEquals(65, criaturaDomesticada.getEnergia());
+
+	}
+	
+	@Test
+	public void queLaEnergiaDeLaCriaturaNoAncestralnNoBajeDeCero() {
+		Criatura criaturaAncestral = new CriaturaAncestral("Carlos", 120, Afinidad.TIERRA);
+		Criatura criaturaDomesticada = new CriaturaDomesticada("Juan", 10, Afinidad.AIRE);
+
+		criaturaAncestral.interactuar(criaturaDomesticada);
+		
+		assertEquals(0, criaturaDomesticada.getEnergia());
+
+	}
+	
+	@Test
+	public void queInteraccionesSinReglasEspecialesNoModifiquenNada() {
+		Criatura criaturaSalvaje = new CriaturaSalvaje("Carlos", 120, Afinidad.FUEGO);
+		Criatura criaturaDomesticada = new CriaturaDomesticada("Juan", 10, Afinidad.AIRE);
+
+		criaturaDomesticada.interactuar(criaturaSalvaje);
+		
+		assertEquals(120, criaturaSalvaje.getEnergia());
+		assertEquals(10, criaturaDomesticada.getEnergia());
+	}
 	
 
 }

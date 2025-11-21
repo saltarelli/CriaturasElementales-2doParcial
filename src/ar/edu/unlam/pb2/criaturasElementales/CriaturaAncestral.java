@@ -8,17 +8,13 @@ public class CriaturaAncestral extends Criatura {
 
 	@Override
 	public void entrenar() {
-		this.energia += 15;
-		
-		if(this.energia < 100) {
-			this.energia = 100;
-		}
+		modificarEnergia(15);
 		
 	}
 
 	@Override
 	public void pacificar() {
-		this.energia -= 5;
+		modificarEnergia(-5);
 		
 		if(this.energia < 100) {
 			this.energia = 100;
