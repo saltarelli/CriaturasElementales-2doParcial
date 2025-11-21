@@ -8,14 +8,17 @@ public class CriaturaAncestral extends Criatura {
 
 	@Override
 	public void entrenar() {
-		// TODO Auto-generated method stub
+		modificarEnergia(15);
 		
 	}
 
 	@Override
 	public void pacificar() {
-		// TODO Auto-generated method stub
+		modificarEnergia(-5);
 		
+		if(this.energia < 100) {
+			this.energia = 100;
+		}
 	}
 	
 }
