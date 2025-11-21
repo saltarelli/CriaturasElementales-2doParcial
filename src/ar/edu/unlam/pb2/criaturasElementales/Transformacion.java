@@ -22,5 +22,9 @@ public class Transformacion extends Criatura {
 		envuelta.pacificar();
 	}
 
+	public static Criatura aplicar(Criatura criatura) {
+		
+		return new Transformacion(criatura);
+	}
 
 }
