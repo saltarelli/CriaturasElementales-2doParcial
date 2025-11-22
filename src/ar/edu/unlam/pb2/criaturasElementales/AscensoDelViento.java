@@ -2,21 +2,27 @@ package ar.edu.unlam.pb2.criaturasElementales;
 
 public class AscensoDelViento extends Transformacion {
 
-	public AscensoDelViento(Criatura envuelta) {
-		super(envuelta);
-	}
+    public AscensoDelViento(Criatura envuelta) {
+        super(envuelta);
+    }
 
-	@Override
-	public void entrenar() {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    protected Transformacion crear(Criatura criatura) {
+        return new AscensoDelViento(criatura);
+    }
 
-	@Override
-	public void pacificar() {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	
+    @Override
+    public Afinidad getAfinidad() {
+        return Afinidad.AIRE; 
+    }
+
+    @Override
+    public int getEnergia() {
+        return envuelta.getEnergia();
+    }
+
+    @Override
+    public String getNombre() {
+        return envuelta.getNombre();
+    }
 }
