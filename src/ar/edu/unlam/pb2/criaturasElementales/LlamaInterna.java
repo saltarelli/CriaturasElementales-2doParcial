@@ -2,34 +2,34 @@ package ar.edu.unlam.pb2.criaturasElementales;
 
 public class LlamaInterna extends Transformacion {
 
-    public LlamaInterna(Criatura envuelta) {
-        super(envuelta);
+	public LlamaInterna(Criatura criatura) {
+		super(criatura);
 
-        if (envuelta.getAfinidad() != Afinidad.FUEGO) {
-            this.comportamiento = Comportamiento.INESTABLE;
-        }
-    }
+		if (criatura.getAfinidad() != Afinidad.FUEGO) {
+			this.comportamiento = Comportamiento.INESTABLE;
+		}
+	}
 
-    @Override
-    protected Transformacion crear(Criatura criatura) {
-        return new LlamaInterna(criatura);
-    }
+	@Override
+	protected Transformacion crear(Criatura criatura) {
+		return new LlamaInterna(criatura);
+	}
 
-    @Override
-    public int getEnergia() {
-        if (envuelta.getAfinidad() == Afinidad.FUEGO) {
-            return envuelta.getEnergia() + 30;
-        }
-        return envuelta.getEnergia();
-    }
+	@Override
+	public int getEnergia() {
+		if (criatura.getAfinidad() == Afinidad.FUEGO) {
+			return criatura.getEnergia() + 30;
+		}
+		return criatura.getEnergia();
+	}
 
-    @Override
-    public Afinidad getAfinidad() {
-        return envuelta.getAfinidad();
-    }
+	@Override
+	public Afinidad getAfinidad() {
+		return criatura.getAfinidad();
+	}
 
-    @Override
-    public String getNombre() {
-        return envuelta.getNombre();
-    }
+	@Override
+	public String getNombre() {
+		return criatura.getNombre();
+	}
 }

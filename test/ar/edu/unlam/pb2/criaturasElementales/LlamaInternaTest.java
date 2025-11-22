@@ -6,21 +6,21 @@ import org.junit.Test;
 
 public class LlamaInternaTest {
 
-    @Test
-    public void queAumenteEnergiaSiEsDeFuego() {
-        Criatura base = new CriaturaDomesticada("Pyro", 50, Afinidad.FUEGO);
+	@Test
+	public void queAumenteEnergiaSiEsDeFuego() {
+		Criatura base = new CriaturaDomesticada("Pyro", 50, Afinidad.FUEGO);
 
-        Criatura transformada = new LlamaInterna(base);
+		Criatura transformada = new LlamaInterna(base);
 
-        assertEquals(80, transformada.getEnergia()); 
-    }
-    
-    @Test
-    public void queSeVuelvaInestableSiNoEsDeFuego() {
-        Criatura base = new CriaturaDomesticada("Vientin", 70, Afinidad.AIRE);
+		assertEquals(80, transformada.getEnergia());
+	}
 
-        Criatura transformada = new LlamaInterna(base);
+	@Test
+	public void queSeVuelvaInestableSiNoEsDeFuego() {
+		Criatura base = new CriaturaDomesticada("Vientin", 70, Afinidad.AIRE);
 
-        assertEquals(Comportamiento.INESTABLE, transformada.getComportamiento());
-    }
+		Criatura transformada = new LlamaInterna(base);
+
+		assertEquals(Comportamiento.INESTABLE, transformada.getComportamiento());
+	}
 }

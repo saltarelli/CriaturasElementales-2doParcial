@@ -6,13 +6,13 @@ import org.junit.Test;
 
 public class AscensoDelVientoTest {
 
-    @Test
-    public void queCambieAfinidadAAire() {
-        Criatura base = new CriaturaDomesticada("Leaf", 80, Afinidad.TIERRA);
+	@Test
+	public void queCambieAfinidadAAire() {
+		Criatura base = new CriaturaDomesticada("Leaf", 80, Afinidad.TIERRA);
 
-        Criatura transformada = new AscensoDelViento(base);
+		Criatura transformada = new AscensoDelViento(base);
 
-        assertEquals(Afinidad.AIRE, transformada.getAfinidad());
-    }
+		assertEquals(Afinidad.AIRE, transformada.getAfinidad());
+	}
 
 }

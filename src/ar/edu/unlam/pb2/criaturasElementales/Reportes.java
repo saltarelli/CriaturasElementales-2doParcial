@@ -7,83 +7,74 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Reportes {
-	
+
 	private Collection<Maestro> maestros;
 
-    public Reportes(Collection<Maestro> maestros) {
-        this.maestros = maestros;
-    }
+	public Reportes(Collection<Maestro> maestros) {
+		this.maestros = maestros;
+	}
 
-    // Métodos pedidos por el TP
-    public List<Criatura> listarTodasLasCriaturas(){
-    	
-    	List<Criatura> lista = new ArrayList<>();
-    	
-    	for(Maestro m : maestros) {
-    		lista.addAll(m.getCriaturas().values());
-    	}
-    	
-    	return lista;
-    }
+	public List<Criatura> listarTodasLasCriaturas() {
+		List<Criatura> lista = new ArrayList<>();
 
-    public Criatura obtenerCriaturaConMayorEnergia(){
-    	
-    	List<Criatura> criaturas = listarTodasLasCriaturas();
+		for (Maestro maestro : maestros) {
+			lista.addAll(maestro.getCriaturas().values());
+		}
+		return lista;
+	}
 
-        if (criaturas.isEmpty()) {
-            return null;
-        }
+	public Criatura obtenerCriaturaConMayorEnergia() {
+		List<Criatura> criaturas = listarTodasLasCriaturas();
 
-        Criatura mayor = criaturas.get(0);
+		if (criaturas.isEmpty()) {
+			return null;
+		}
 
-        for (Criatura c : criaturas) {
-            if (c.getEnergia() > mayor.getEnergia()) {
-                mayor = c;
-            }
-        }
+		Criatura mayor = criaturas.get(0);
 
-        return mayor;
-    }
+		for (Criatura criatura : criaturas) {
+			if (criatura.getEnergia() > mayor.getEnergia()) {
+				mayor = criatura;
+			}
+		}
 
-    public Maestro obtenerMaestroConMasTransformadas(){
-    	
-    	if (maestros.isEmpty()) {
-            return null;
-        }
+		return mayor;
+	}
 
-        Maestro mayor = null;
-        int maxTransformadas = -1;
+	public Maestro obtenerMaestroConMasTransformadas() {
 
-        for (Maestro m : maestros) {
+		if (maestros.isEmpty()) {
+			return null;
+		}
 
-            int contador = 0;
+		Maestro mayor = null;
+		int maxTransformadas = -1;
 
-            for (Criatura c : m.getCriaturas().values()) {
-                if (c instanceof Transformacion) {
-                    contador++;
-                }
-            }
-         
-            if (contador > maxTransformadas) {
-                maxTransformadas = contador;
-                mayor = m;
-            }
-        }
+		for (Maestro maestro : maestros) {
+			int contador = 0;
 
-        return mayor;
-    }
+			for (Criatura criatura : maestro.getCriaturas().values()) {
+				if (criatura instanceof Transformacion) {
+					contador++;
+				}
+			}
+			if (contador > maxTransformadas) {
+				maxTransformadas = contador;
+				mayor = maestro;
+			}
+		}
+		return mayor;
+	}
 
-    public HashMap<Afinidad, Integer> cantidadDeCriaturasPorAfinidad(){
-    	
-    	HashMap<Afinidad, Integer> mapa = new HashMap<>();
+	public HashMap<Afinidad, Integer> cantidadDeCriaturasPorAfinidad() {
+		HashMap<Afinidad, Integer> mapa = new HashMap<>();
 
-    	  for (Maestro m : maestros) {
-    	     for (Criatura c : m.getCriaturas().values()) {
-    	         mapa.put(c.getAfinidad(), mapa.getOrDefault(c.getAfinidad(), 0) + 1);
-    	    }
-    	 }
-
-    	 return mapa;
-    }
+		for (Maestro maestro : maestros) {
+			for (Criatura criatura : maestro.getCriaturas().values()) {
+				mapa.put(criatura.getAfinidad(), mapa.getOrDefault(criatura.getAfinidad(), 0) + 1);
+			}
+		}
+		return mapa;
+	}
 
 }

@@ -6,22 +6,22 @@ import org.junit.Test;
 
 public class VinculoTerrestreTest {
 
-    @Test
-    public void queNoBajeDe50() {
-        Criatura base = new CriaturaDomesticada("Rocky", 30, Afinidad.TIERRA);
+	@Test
+	public void queNoBajeDe50() {
+		Criatura base = new CriaturaDomesticada("Rocky", 30, Afinidad.TIERRA);
 
-        Criatura transformada = new VinculoTerrestre(base);
+		Criatura transformada = new VinculoTerrestre(base);
 
-        assertEquals(50, transformada.getEnergia());
-    }
-    
-    @Test
-    public void queRespeteEnergiaSiEsMayorA50() {
-        Criatura base = new CriaturaDomesticada("Rocky", 90, Afinidad.TIERRA);
+		assertEquals(50, transformada.getEnergia());
+	}
 
-        Criatura transformada = new VinculoTerrestre(base);
+	@Test
+	public void queRespeteEnergiaSiEsMayorA50() {
+		Criatura base = new CriaturaDomesticada("Rocky", 90, Afinidad.TIERRA);
 
-        assertEquals(90, transformada.getEnergia());
-    }
+		Criatura transformada = new VinculoTerrestre(base);
+
+		assertEquals(90, transformada.getEnergia());
+	}
 
 }

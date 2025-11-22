@@ -2,29 +2,26 @@ package ar.edu.unlam.pb2.criaturasElementales;
 
 public abstract class Transformacion extends Criatura {
 
-    protected Criatura envuelta;
+	protected Criatura criatura;
 
-    public Transformacion(Criatura envuelta) {
-        super(envuelta.getNombre(),
-              envuelta.getEnergia(),
-              envuelta.getAfinidad(),
-              envuelta.getComportamiento());
-        this.envuelta = envuelta;
-    }
+	public Transformacion(Criatura criatura) {
+		super(criatura.getNombre(), criatura.getEnergia(), criatura.getAfinidad(), criatura.getComportamiento());
+		this.criatura = criatura;
+	}
 
-    protected abstract Transformacion crear(Criatura criatura);
+	protected abstract Transformacion crear(Criatura criatura);
 
-    public Criatura envolver(Criatura criatura) {
-        return crear(criatura);
-    }
+	public Criatura adquirir(Criatura criatura) {
+		return crear(criatura);
+	}
 
-    @Override
-    public void entrenar() {
-        envuelta.entrenar(); 
-    }
+	@Override
+	public void entrenar() {
+		criatura.entrenar();
+	}
 
-    @Override
-    public void pacificar() {
-        envuelta.pacificar();
-    }
+	@Override
+	public void pacificar() {
+		criatura.pacificar();
+	}
 }

@@ -1,22 +1,22 @@
 package ar.edu.unlam.pb2.criaturasElementales;
 
 public class CriaturaDecorada extends Criatura {
-	
-	protected Criatura envuelta;
 
-	public CriaturaDecorada(Criatura envuelta) {
-		super(envuelta.getNombre(), envuelta.getEnergia(), envuelta.getAfinidad(), envuelta.getComportamiento());
-		this.envuelta = envuelta;
+	protected Criatura criatura;
+
+	public CriaturaDecorada(Criatura criatura) {
+		super(criatura.getNombre(), criatura.getEnergia(), criatura.getAfinidad(), criatura.getComportamiento());
+		this.criatura = criatura;
 	}
 
 	@Override
 	public void entrenar() {
-		envuelta.entrenar();
+		criatura.entrenar();
 	}
 
 	@Override
 	public void pacificar() {
-		envuelta.pacificar();
+		criatura.pacificar();
 	}
 
 }

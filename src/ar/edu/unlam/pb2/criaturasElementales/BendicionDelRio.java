@@ -2,33 +2,33 @@ package ar.edu.unlam.pb2.criaturasElementales;
 
 public class BendicionDelRio extends Transformacion {
 
-	public BendicionDelRio(Criatura envuelta) {
-        super(envuelta);
-    }
+	public BendicionDelRio(Criatura criatura) {
+		super(criatura);
+	}
 
-    @Override
-    protected Transformacion crear(Criatura criatura) {
-        return new BendicionDelRio(criatura);
-    }
+	@Override
+	protected Transformacion crear(Criatura criatura) {
+		return new BendicionDelRio(criatura);
+	}
 
-    @Override
-    public int getEnergia() {
-        int energiaDuplicada = envuelta.getEnergia() * 2;
-        return Math.min(energiaDuplicada, 180);
-    }
+	@Override
+	public int getEnergia() {
+		int energiaDuplicada = criatura.getEnergia() * 2;
+		return Math.min(energiaDuplicada, 180);
+	}
 
-    @Override
-    public Afinidad getAfinidad() {
-        return envuelta.getAfinidad();
-    }
+	@Override
+	public Afinidad getAfinidad() {
+		return criatura.getAfinidad();
+	}
 
-    @Override
-    public Comportamiento getComportamiento() {
-        return envuelta.getComportamiento();
-    }
+	@Override
+	public Comportamiento getComportamiento() {
+		return criatura.getComportamiento();
+	}
 
-    @Override
-    public String getNombre() {
-        return envuelta.getNombre();
-    }
+	@Override
+	public String getNombre() {
+		return criatura.getNombre();
+	}
 }

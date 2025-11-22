@@ -7,101 +7,96 @@ import org.junit.Test;
 public class MaestroTest {
 
 	@Test
-    public void queSePuedaAgregarCriatura() {
-        Maestro maestro = new Maestro("Pepe", 20, Afinidad.FUEGO);
-        Criatura criatura = new CriaturaDomesticada("Luna", 50, Afinidad.AGUA);
+	public void queSePuedaAgregarCriatura() {
+		Maestro maestro = new Maestro("Pepe", 20, Afinidad.FUEGO);
+		Criatura criatura = new CriaturaDomesticada("Luna", 50, Afinidad.AGUA);
 
-        maestro.agregarCriatura(criatura);
+		maestro.agregarCriatura(criatura);
 
-        assertTrue(maestro.getCriaturas().containsKey("Luna"));
-    }
-	
+		assertTrue(maestro.getCriaturas().containsKey("Luna"));
+	}
+
 	@Test
 	public void queElMaestroEntreneCorrectamente() throws FaltaDeMaestriaException {
-	    Maestro maestro = new Maestro("Sol", 20, Afinidad.FUEGO);
-	    Criatura criatura = new CriaturaDomesticada("Brisa", 50, Afinidad.AIRE);
+		Maestro maestro = new Maestro("Sol", 20, Afinidad.FUEGO);
+		Criatura criatura = new CriaturaDomesticada("Brisa", 50, Afinidad.AIRE);
 
-	    maestro.agregarCriatura(criatura);
+		maestro.agregarCriatura(criatura);
 
-	    maestro.entrenar("Brisa");
-  
-	    assertEquals(60, criatura.getEnergia());
+		maestro.entrenar("Brisa");
+
+		assertEquals(60, criatura.getEnergia());
 	}
-	 
-	 @Test(expected = FaltaDeMaestriaException.class)
-	 public void queFalleEntrenamientoPorFaltaDeMaestria() throws FaltaDeMaestriaException {
-	     Maestro maestro = new Maestro("Aang", 2, Afinidad.AIRE);
-	     Criatura criatura = new CriaturaDomesticada("Rayo", 80, Afinidad.FUEGO);
 
-	     maestro.agregarCriatura(criatura);
+	@Test(expected = FaltaDeMaestriaException.class)
+	public void queFalleEntrenamientoPorFaltaDeMaestria() throws FaltaDeMaestriaException {
+		Maestro maestro = new Maestro("Aang", 2, Afinidad.AIRE);
+		Criatura criatura = new CriaturaDomesticada("Rayo", 80, Afinidad.FUEGO);
 
-	     maestro.entrenar("Rayo");
-	  }
-	 
-	 
-	  @Test
-	  public void queElMaestroPacifiqueUnaCriatura() {
-	      Maestro maestro = new Maestro("Rocky", 30, Afinidad.TIERRA);
+		maestro.agregarCriatura(criatura);
 
-	      Criatura criatura = new CriaturaDomesticada("Sol", 40, Afinidad.AGUA);
+		maestro.entrenar("Rayo");
+	}
 
-	      maestro.agregarCriatura(criatura);
+	@Test
+	public void queElMaestroPacifiqueUnaCriatura() {
+		Maestro maestro = new Maestro("Rocky", 30, Afinidad.TIERRA);
+		Criatura criatura = new CriaturaDomesticada("Sol", 40, Afinidad.AGUA);
 
-	      maestro.pacificar("Sol");
+		maestro.agregarCriatura(criatura);
 
-	      assertEquals(30, criatura.getEnergia());
-	   }
+		maestro.pacificar("Sol");
 
-	   @Test
-	   public void queElMaestroApliqueBendicionDelRio() {
-	       Maestro maestro = new Maestro("Katara", 20, Afinidad.AGUA);
-	       Criatura criatura = new CriaturaDomesticada("Nube", 60, Afinidad.AGUA);
+		assertEquals(30, criatura.getEnergia());
+	}
 
-	       maestro.agregarCriatura(criatura);
+	@Test
+	public void queElMaestroApliqueBendicionDelRio() {
+		Maestro maestro = new Maestro("Katara", 20, Afinidad.AGUA);
+		Criatura criatura = new CriaturaDomesticada("Nube", 60, Afinidad.AGUA);
 
-	       maestro.transformar("Nube", new BendicionDelRio(criatura));
+		maestro.agregarCriatura(criatura);
 
-	       Criatura transformada = maestro.getCriaturas().get("Nube");
+		maestro.transformar("Nube", new BendicionDelRio(criatura));
 
-	       assertEquals(120, transformada.getEnergia());
-	       assertTrue(transformada instanceof BendicionDelRio);
-	    }
+		Criatura transformada = maestro.getCriaturas().get("Nube");
 
-	    @Test
-	    public void queElMaestroApliqueTransformacionesEncadenadas() {
-	        Maestro maestro = new Maestro("Vientin", 40, Afinidad.AIRE);
+		assertEquals(120, transformada.getEnergia());
+		assertTrue(transformada instanceof BendicionDelRio);
+	}
 
-	        Criatura criatura = new CriaturaDomesticada("Eco", 50, Afinidad.FUEGO);
-	        maestro.agregarCriatura(criatura);
+	@Test
+	public void queElMaestroApliqueTransformacionesEncadenadas() {
+		Maestro maestro = new Maestro("Vientin", 40, Afinidad.AIRE);
 
-	        maestro.transformar("Eco", new LlamaInterna(criatura));
+		Criatura criatura = new CriaturaDomesticada("Eco", 50, Afinidad.FUEGO);
+		maestro.agregarCriatura(criatura);
 
-	        Criatura primera = maestro.getCriaturas().get("Eco");
-	        assertTrue(primera instanceof LlamaInterna);
+		maestro.transformar("Eco", new LlamaInterna(criatura));
 
-	        maestro.transformar("Eco", new BendicionDelRio(primera));
+		Criatura primera = maestro.getCriaturas().get("Eco");
+		assertTrue(primera instanceof LlamaInterna);
 
-	        Criatura segunda = maestro.getCriaturas().get("Eco");
-	        assertTrue(segunda instanceof BendicionDelRio);
+		maestro.transformar("Eco", new BendicionDelRio(primera));
 
-	        assertEquals(Math.min((50 + 30) * 2, 180), segunda.getEnergia());
-	    }
+		Criatura segunda = maestro.getCriaturas().get("Eco");
+		assertTrue(segunda instanceof BendicionDelRio);
 
+		assertEquals(Math.min((50 + 30) * 2, 180), segunda.getEnergia());
+	}
 
-	    @Test
-	    public void queAscensoDelVientoCambieAfinidadTemporalmente() {
-	        Maestro maestro = new Maestro("Roberto", 50, Afinidad.AIRE);
-	        Criatura criatura = new CriaturaDomesticada("Aura", 40, Afinidad.TIERRA);
+	@Test
+	public void queAscensoDelVientoCambieAfinidadTemporalmente() {
+		Maestro maestro = new Maestro("Roberto", 50, Afinidad.AIRE);
+		Criatura criatura = new CriaturaDomesticada("Aura", 40, Afinidad.TIERRA);
 
-	        maestro.agregarCriatura(criatura);
+		maestro.agregarCriatura(criatura);
 
-	        maestro.transformar("Aura", new AscensoDelViento(criatura));
+		maestro.transformar("Aura", new AscensoDelViento(criatura));
 
-	        Criatura t = maestro.getCriaturas().get("Aura");
+		Criatura transformada = maestro.getCriaturas().get("Aura");
 
-	        assertEquals(Afinidad.AIRE, t.getAfinidad());
-	    }
-	    
-
+		assertEquals(Afinidad.AIRE, transformada.getAfinidad());
+	}
 
 }

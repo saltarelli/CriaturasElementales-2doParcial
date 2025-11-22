@@ -2,7 +2,7 @@ package ar.edu.unlam.pb2.criaturasElementales;
 
 public class CriaturaDomesticada extends Criatura {
 
-	public CriaturaDomesticada(String nombre,  int energia, Afinidad afinidad) {
+	public CriaturaDomesticada(String nombre, int energia, Afinidad afinidad) {
 		super(nombre, energia, afinidad, Comportamiento.TRANQUILA);
 	}
 
@@ -14,7 +14,7 @@ public class CriaturaDomesticada extends Criatura {
 	@Override
 	public void pacificar() {
 		modificarEnergia(-10);
-		
+
 	}
-	
+
 }
